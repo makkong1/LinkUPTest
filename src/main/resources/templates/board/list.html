@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>게시글 목록</title>
+</head>
+<body>
+    <h1>게시글 목록</h1>
+    <a href="/new">새 게시글 작성</a>
+    <table>
+        <tr>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>조회 수</th>
+            <th>작성일</th>
+            <th>작업</th>
+        </tr>
+        <tr th:each="board : ${boards}">
+            <td><a th:href="@{/board/{id}(id=${board.b_idx})}" th:text="${board.b_title}">제목</a></td>
+            <td th:text="${board.b_writer}">작성자</td>
+            <td th:text="${board.b_view_cnt}">조회 수</td>
+            <td th:text="${#dates.format(board.b_upload, 'yyyy-MM-dd HH:mm')}">작성일</td>
+            <td>
+                <form th:action="@{/board/{id}/delete(id=${board.b_idx})}" method="post">
+                    <button type="submit">삭제</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

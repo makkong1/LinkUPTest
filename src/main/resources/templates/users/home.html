@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 목록</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">게시글 목록</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board : ${boards}">
+            <td th:text="${board.b_idx}"></td> <!-- 게시글 번호 -->
+            <td th:text="${board.b_title}"></td> <!-- 게시글 제목 -->
+            <td th:text="${board.b_writer}"></td> <!-- 작성자 -->
+            <td th:text="${#dates.format(board.b_upload, 'yyyy-MM-dd')}"></td> <!-- 작성일 -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
