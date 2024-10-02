@@ -12,4 +12,5 @@ public class LinkUpApplication {
 		SpringApplication.run(LinkUpApplication.class, args);
 	}
 
+	int i = 10;
 }
