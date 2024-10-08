@@ -19,6 +19,7 @@ public class Users {
 
     private String u_username;
 
+    @Column(unique = true)
     private String u_id;
 
     private String u_pwd;
@@ -33,7 +34,8 @@ public class Users {
 
     private java.sql.Timestamp u_created_at;
 
-    private Boolean u_status;
-
     private String u_block;
+
+    @Column(length = 1)
+    private String u_role; // 'a' for admin, 'u' for user
 }

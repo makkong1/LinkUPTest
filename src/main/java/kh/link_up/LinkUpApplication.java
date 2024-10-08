@@ -11,8 +11,4 @@ public class LinkUpApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LinkUpApplication.class, args);
 	}
-
-	int i = 10;
-	int j = 20;
-	int a = 30;
 }

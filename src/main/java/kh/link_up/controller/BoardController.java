@@ -5,11 +5,10 @@ import kh.link_up.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @Controller
 public class BoardController {
@@ -28,7 +27,8 @@ public class BoardController {
         return "board/list"; // Thymeleaf 템플릿 파일 경로
     }
 
-    @GetMapping("/new")
+    @RequestMapping(value={"/","/new"})
+//    @GetMapping("/new")
     public String createForm(Model model) {
         model.addAttribute("board", new Board());
         return "board/form"; // 게시글 작성 폼
@@ -40,15 +40,15 @@ public class BoardController {
         return "redirect:/board"; // 게시글 목록으로 리다이렉트
     }
 
-    @GetMapping("/{id}")
-    public String view(@PathVariable Long id, Model model) {
+    @GetMapping("/board/{id}")
+    public String view(@PathVariable("id") Long id, Model model) {
         Board board = boardService.getBoardById(id).orElse(null);
         model.addAttribute("board", board);
         return "board/view"; // 게시글 상세 보기
     }
 
-    @PostMapping("/{id}/delete")
-    public String delete(@PathVariable Long id) {
+    @PostMapping("/board/{id}/delete")
+    public String delete(@PathVariable("id") Long id) {
         boardService.deleteBoard(id);
         return "redirect:/board"; // 게시글 목록으로 리다이렉트
     }
